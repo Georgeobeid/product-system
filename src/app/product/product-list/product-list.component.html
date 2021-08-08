@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8">
+  <button mat-raised-button color="primary" style="margin:10px 0px;" (click)="openDialog()">Add product</button>
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column --> <!-- in this case I won't show this column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+      <td mat-cell *matCellDef="let row">{{row.price}}</td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+      <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
+    </ng-container>
+
+    <!-- Options Column -->
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef>Options</th>
+      <td mat-cell *matCellDef="let row">
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <div>
+            <button mat-mini-fab color="primary" matTooltip="Edit" (click)="openDialog(row)">
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+          <div>
+            <button mat-mini-fab color="warn" matTooltip="Delete" (click)="openDeleteDialog(row)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+                 [length]="dataSource?.data?.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 aria-label="Select page">
+  </mat-paginator>
+</div>

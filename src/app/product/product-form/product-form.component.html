@@ -1,0 +1,21 @@
+<div class="container" fxLayout="row wrap" fxFlexAlign="center center">
+  <h3>{{this.data?.id ? 'Edit' : 'Add'}} product</h3>
+  <div fxFlex="100">
+    <form [formGroup]="productForm">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder='Name' formControlName="name">
+        <mat-error *ngIf="formControls.errors">Due Date is required for Tasks</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Price" formControlName="price">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Quantity" formControlName="quantity">
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions fxFlex="100" fxFlexAlign="end center">
+    <button mat-raised-button color="warn" [mat-dialog-close] cdkFocusInitial>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="productForm">Save</button>
+  </div>
+</div>
