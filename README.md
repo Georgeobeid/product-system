@@ -4,13 +4,14 @@ built with Angular that interacts with an actual backend (Firebase)
 including CRUD operations. I've gone to great lengths to
 adhere to the Angular Styleguide & good practices.
 
-#Functionality overview
+## Functionality overview
 This application is a simple system that enables you to store a product with its price and quantity.
 Beyond that, it enables you to list all the products, delete one by one and edit them.
 No authentication is required, just access to see a list of all products with all details.
 The main page also contains a button to add a new product and a side navbar.
 
-#Getting started
+# Getting started
+
 Make sure you have the Angular CLI installed globally. We use `npm` to manage 
 the dependencies, so we strongly recommend you to use it. Then run `npm install` to resolve all dependencies (might take a minute).
 
@@ -43,5 +44,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-#Author
+## Author
 George Obeid
