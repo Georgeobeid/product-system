@@ -29,14 +29,13 @@ export class ProductListComponent implements AfterViewInit {
     this.dataSource = new ProductListDataSource();
   }
 
-  ngAfterViewInit(): void {
-    this.service.getAll().subscribe(res => {
-
-      this.dataSource.data = res;
-      this.table.dataSource = this.dataSource;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+  ngAfterViewInit() {
+    this.service.getAll().subscribe(value => {
+      this.dataSource.data = value
+      this.table.dataSource = value;
     });
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   openDialog(product?: Product) {
@@ -48,11 +47,9 @@ export class ProductListComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe((data: FormGroup) => {
       if (data) {
         if (data.value.id) {
-          this.service.onUpdate(data.value, data.value.id);
-          location.reload();
+          this.service.onUpdate(data.value);
         } else {
-          this.service.onCreate(data.value);
-          location.reload();
+          this.service.addProduct(data.value);
         }
       }
     });
@@ -67,7 +64,6 @@ export class ProductListComponent implements AfterViewInit {
       if (data === true) {
         if (product.id) {
           this.service.onDelete(product.id);
-          location.reload();
         }
       }
     });

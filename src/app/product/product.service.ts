@@ -1,39 +1,37 @@
 import {Injectable} from '@angular/core';
 import {Product} from "../model/product.model";
 import {AngularFireDatabase} from "@angular/fire/database";
-import {map} from "rxjs/operators";
+import {AngularFirestore} from "@angular/fire/firestore";
+import {BaseService} from "../core/base-service/base.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService extends BaseService<Product> {
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, firestore: AngularFirestore) {
+    super(firestore, 'products');
   }
 
-  onCreate(product: Product) {
-    return this.db.list('products').push(product).then(() => {
-      console.log('Added successfully');
+  addProduct(product: Product) {
+    this.add(product).subscribe(response => {
+      console.log('Product added successfully !!!')
     });
-  }
+  };
 
-  getAll() {
-    return this.db.list('products').snapshotChanges()
-      .pipe(map(changes => {
-        // @ts-ignore
-        return changes.map(data => ({id: data.payload.key, ...data.payload.val()}));
-      }))
+  getAll(): Observable<Product[]> {
+    return this.getAllItems();
   }
 
   onDelete(id: string) {
-    this.db.object(`products/${id}`).remove().then(() => {
-      console.log('Deleted successfully');
-    });
+    return this.delete(id);
   }
 
-  onUpdate(product: Product, id: string) {
-    this.db.list('products').update(id, product).then(() => {
-      console.log('Updated successfully');
-    })
+  onUpdate(product: Product) {
+    this.update(product).subscribe(response => {
+        console.log('updated successfully ', response);
+      }
+    )
   }
 }
