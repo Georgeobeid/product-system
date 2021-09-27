@@ -28,7 +28,10 @@ export class ProductFormComponent implements OnInit {
       id: [product.id],
       name: [product.name, [Validators.required, Validators.minLength(3)]],
       price: [product.price, [Validators.required, Validators.min(0)]],
-      quantity: [product.quantity, [Validators.required, Validators.min(0)]]
+      quantity: [product.quantity, [Validators.required, Validators.min(0)]],
+      energyEfficiency: [product.energyEfficiency],
+      isOrganic: [product.isOrganic],
+      isRecyclable: [product.isRecyclable]
     })
   }
 }
