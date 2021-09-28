@@ -25,6 +25,25 @@
       <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
     </ng-container>
 
+    <!-- Energy Efficiency Column -->
+    <ng-container matColumnDef="energyEfficiency">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Eficiência Energética</th>
+      <td mat-cell
+          *matCellDef="let row">{{row.energyEfficiency == 'other' ? 'Outros' : row.energyEfficiency| uppercase}}</td>
+    </ng-container>
+
+    <!-- is Organic Column -->
+    <ng-container matColumnDef="isOrganic">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>É orgánico</th>
+      <td mat-cell *matCellDef="let row">{{row.isOrganic ? 'Sim' : 'NÃO' }}</td>
+    </ng-container>
+
+    <!-- is Recyclable Column -->
+    <ng-container matColumnDef="isRecyclable">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>É reciclavel</th>
+      <td mat-cell *matCellDef="let row">{{row.isRecyclable ? 'Sim' : 'NÃO'}}</td>
+    </ng-container>
+
     <!-- Options Column -->
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Options</th>

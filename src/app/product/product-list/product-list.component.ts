@@ -22,7 +22,7 @@ export class ProductListComponent implements AfterViewInit {
   dataSource: ProductListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['name', 'price', 'quantity', 'options'];
+  displayedColumns = ['name', 'price', 'quantity', 'energyEfficiency', 'isOrganic', 'isRecyclable', 'options'];
 
   constructor(public dialog: MatDialog,
               private service: ProductService) {

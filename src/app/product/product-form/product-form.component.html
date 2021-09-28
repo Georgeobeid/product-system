@@ -4,13 +4,18 @@
     <form [formGroup]="productForm">
       <mat-form-field class="example-full-width">
         <input matInput placeholder='Name' formControlName="name">
-        <mat-error *ngIf="formControls.errors">Due Date is required for Tasks</mat-error>
+        <mat-error *ngIf="formControls.name.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="formControls.name.hasError('minlength')">Too short</mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Price" type="number" formControlName="price">
+        <mat-error *ngIf="formControls.price.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="formControls.price.hasError('min')">Can NOT be negative</mat-error>
       </mat-form-field>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Quantity" type="number" formControlName="quantity">
+        <mat-error *ngIf="formControls.quantity.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="formControls.quantity.hasError('min')">Can NOT be negative</mat-error>
       </mat-form-field>
       <mat-form-field appearance="legacy">
         <mat-label>Eficiência energética</mat-label>
@@ -28,6 +33,7 @@
   </div>
   <div mat-dialog-actions fxFlex="100" fxFlexAlign="end center">
     <button mat-raised-button color="warn" [mat-dialog-close] cdkFocusInitial>Cancel</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="productForm">Save</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="productForm" [disabled]="!productForm.valid">Save
+    </button>
   </div>
 </div>
